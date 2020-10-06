@@ -93,10 +93,10 @@ __可以简单地把上述所有概念归结成两种：terminal(中断)和shell
                  +-----------------------------+
 ```
 ##  参考
-https://segmentfault.com/a/1190000016129862
-https://segmentfault.com/a/1190000009082089
-https://www.linuxidc.com/Linux/2017-10/147315.htm
-https://blog.csdn.net/ltx06/article/details/52170852
+https://segmentfault.com/a/1190000016129862  
+https://segmentfault.com/a/1190000009082089  
+https://www.linuxidc.com/Linux/2017-10/147315.htm  
+https://blog.csdn.net/ltx06/article/details/52170852  
 
 # subshell VS child shell
 ## 概念
