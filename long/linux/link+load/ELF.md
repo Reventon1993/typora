@@ -302,7 +302,7 @@ ar -x 可以解压包含的目标文件到当前目录
 
 PLT[1]调用了__libc_start_main
 
-<img src="/Users/jiang/Library/Application Support/typora-user-images/image-20201223161050423.png" alt="image-20201223161050423" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209161708.png" alt="image-20201223161050423" style="zoom:33%;" />
 
 ## 相关section
 
@@ -318,13 +318,13 @@ dynamic
 
 dynsym
 
-<img src="/Users/jiang/Library/Application Support/typora-user-images/image-20201223161304788.png" alt="image-20201223161304788" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209161728.png" alt="image-20201223161304788" style="zoom:33%;" />
 
 <img src="https://raw.githubusercontent.com/Reventon1993/pictures/master//picgo/20201223161337.png" alt="image-20201223161337272" style="zoom:33%;" />
 
 hash & dynstr
 
-<img src="/Users/jiang/Library/Application Support/typora-user-images/image-20201223161412561.png" alt="image-20201223161412561" style="zoom:33%;" />
+<img src="https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209161749.png" alt="image-20201223161412561" style="zoom:33%;" />
 
 rel.dyn & rel.plt
 
@@ -346,7 +346,7 @@ rel.dyn & rel.plt
 
 ### so-name
 
-![image-20201231073616717](/Users/jiang/Library/Application Support/typora-user-images/image-20201231073616717.png)
+![image-20201231073616717](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209161805.png)
 
 ![image-20201231073649709](https://raw.githubusercontent.com/Reventon1993/pictures/master//picgo/20201231073649.png)
 

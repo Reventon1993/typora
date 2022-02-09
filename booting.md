@@ -36,9 +36,9 @@ bios主要工作如下：
 
   https://en.wikipedia.org/wiki/Option_ROM 
 
-![企业微信截图_7eb7a434-1783-4f9e-a05b-8c020146de4d](/Users/jiang/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Temp/ScreenCapture/企业微信截图_7eb7a434-1783-4f9e-a05b-8c020146de4d.png)
+![企业微信截图_7eb7a434-1783-4f9e-a05b-8c020146de4d](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209162851.png)
 
-![企业微信截图_1c395993-1fe4-477c-855b-e435050b1632](/Users/jiang/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Temp/ScreenCapture/企业微信截图_1c395993-1fe4-477c-855b-e435050b1632.png)
+![企业微信截图_1c395993-1fe4-477c-855b-e435050b1632](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209162900.png)
 
 3.交接给boot sector
 
@@ -62,7 +62,7 @@ MBR有多种形式，最常见的MBR形式：
 
 分区表结构：
 
-![企业微信截图_3bac87a2-acbd-477d-8d3d-e958108b3b8f](/Users/jiang/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Temp/ScreenCapture/企业微信截图_3bac87a2-acbd-477d-8d3d-e958108b3b8f.png)
+![企业微信截图_3bac87a2-acbd-477d-8d3d-e958108b3b8f](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209162900.png)
 
 第一个字节为active flag,活动分区表示该分区中有内核/second-stage bootloader
 
@@ -134,7 +134,7 @@ UEFI不再依赖mbr，他可以自行找到文进系统中的bootloader文件。
 
 gpt是mbr的后继，优化了booting、disk partition等。
 
-<img src="/Users/jiang/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Temp/ScreenCapture/企业微信截图_801b1cf0-132c-45b2-b121-25011ee5c126.png" alt="企业微信截图_801b1cf0-132c-45b2-b121-25011ee5c126" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209162911.png" alt="企业微信截图_801b1cf0-132c-45b2-b121-25011ee5c126" style="zoom:50%;" />
 
 gpt中第一个sector保留为mbr做兼容。在这种模式下，mbr中的分区表为空。mbr中的引导程序要能识别
 

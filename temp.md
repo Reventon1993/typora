@@ -131,13 +131,13 @@ big real mode：
 
 
 
-![image-20211007153524473](/Users/jiang/Library/Application Support/typora-user-images/image-20211007153524473.png)
+![image-20211007153524473](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209162050.png)
 
 
 
 
 
-![image-20211008100831214](/Users/jiang/Library/Application Support/typora-user-images/image-20211008100831214.png)
+![image-20211008100831214](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209162057.png)
 
 页表、page_init、一致性页表、allocate_page
 

@@ -365,7 +365,7 @@ bar.o : bar.c
 
 ### 其他
 
-![image-20210110215614280](/Users/jiang/Library/Application Support/typora-user-images/image-20210110215614280.png)
+![image-20210110215614280](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209161538.png)
 
 ## 隐含规则&自动推导规则
 

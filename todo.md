@@ -16,13 +16,13 @@ fat12
 
 簇
 
-![企业微信截图_0a15337c-ddda-465b-adc4-b58907e78f95](/Users/jiang/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Temp/ScreenCapture/企业微信截图_0a15337c-ddda-465b-adc4-b58907e78f95.png)
+![企业微信截图_0a15337c-ddda-465b-adc4-b58907e78f95](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209161352.png)
 
-![image-20211116133945854](/Users/jiang/Library/Application Support/typora-user-images/image-20211116133945854.png)
+![image-20211116133945854](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209161400.png)
 
-![企业微信截图_22fca902-5378-42ff-b706-7672716c9f65](/Users/jiang/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Temp/ScreenCapture/企业微信截图_22fca902-5378-42ff-b706-7672716c9f65.png)
+![企业微信截图_22fca902-5378-42ff-b706-7672716c9f65](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209161409.png)
 
-![企业微信截图_befdfb3f-ca7d-4de6-a658-f15e44dd2d31](/Users/jiang/Library/Containers/com.tencent.WeWorkMac/Data/Library/Application Support/WXWork/Temp/ScreenCapture/企业微信截图_befdfb3f-ca7d-4de6-a658-f15e44dd2d31.png)
+![企业微信截图_befdfb3f-ca7d-4de6-a658-f15e44dd2d31](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220209161416.png)
 
 
 
