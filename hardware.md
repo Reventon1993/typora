@@ -92,7 +92,7 @@ CPU通过外设接口(寄存器)、设备存储(比如显存)和外设交互。�
 
 ## Z390 chipset
 
-<img src="https://www.guru3d.com/index.php?ct=news&action=file&id=27296" alt="img"  />
+<img src="https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/index.php" alt="img"  />
 
 # GPU
 
