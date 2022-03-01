@@ -224,8 +224,6 @@ gcc -shared -fPIC 动态共享模块
 
 
 
-
-
 ### 共享模块的编译
 
 gcc -shared -fPIC 命令编译动态共享模块可以指定多个c文件。对于每个输入的c文件来说，
@@ -242,7 +240,7 @@ position-independent code，PIC
 
 PIC技术是代码段可以被加载到任何地址空间中。
 
-PIC技术引入了GOT段，实际在elf中会有.got和.got.plt段(使用plt技术)。
+PIC技术引入了GOT(Global Offset Table)段，实际在elf中会有.got和.got.plt段(函数项表)。
 
 本质上来说：把之前代码段中需要重定位的条目移到了GOT中。
 
@@ -250,7 +248,7 @@ PIC技术引入了GOT段，实际在elf中会有.got和.got.plt段(使用plt技�
 
 ### 延迟绑定
 
-延迟绑定(Lazy Binding)：对GOT代码的重定位可以推迟到它第一次使用时。
+延迟绑定(Lazy Binding)：对GOT函数项(got.plt)的重定位可以推迟到它第一次使用时。
 
 ELF使用PLT(Procedure Linkage Table)的方法来实现。
 
@@ -278,7 +276,17 @@ ELF使用PLT(Procedure Linkage Table)的方法来实现。
 
 7.ELF文件.hash为辅助.dynstr的section
 
+todo
 
+#### .dynamic 
+
+todo
+
+
+
+### 运行时链接
+
+dlopen/dlsym/dlerror/dlclose
 
 
 
@@ -306,7 +314,7 @@ paging是虚拟内存概念的一部分，也需要一个manager，一般就是O
 
 1 创建虚拟内存和物理内存的映射关系，其实这里只需要分配一个页目录即可，具体的页可以后面在使用的时候分配
 
-2 创建物理内存和可执行文件(还有空文件)的映射关系，这一步是最核心的步骤。因此可执行文件也被称为映像文件 (Image)为此，linux提出了VMA的概念。windows有相对应的virtual section概念。
+2 创建虚拟内存和可执行文件(还有空文件)的映射关系，这一步是最核心的步骤。因此可执行文件也被称为映像文件 (Image)为此，linux提出了VMA的概念。windows有相对应的virtual section概念。
 
 3 跳转至ELF的入口地址
 
@@ -380,13 +388,13 @@ todo
 
 
 
-# 
-
 # GLIBC
 
 linux下的C运行库，是C标准库(ISO C)的超集。linux中还有其他的C运行库：linux libc、uClibc。
 
 libc.a/libc.so只是glibc中的文件之一。
+
+![企业微信截图_245836df-48fb-450c-83c6-2e3341f1290d](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220228110721.png)
 
 ## 静态库
 
@@ -398,7 +406,84 @@ ar -x 可以解压包含的目标文件到当前目录
 
 **静态库中的每个目标文件只包含一个函数**
 
+## 共享库
 
+### 共享库版本&兼容性&SO-NAME
+
+Linux有一套完整规则管理共享库
+
+#### 共享库文件名规则
+
+***libname.so.x.y.z***
+
+最前面使用前缀“lib”、中间是库的名字和后缀“.so”，最后面跟着的是三个数字组成的版本号。
+
+“x”表示主版本号（Major Version Number），
+
+“y”表示次版本号（Minor Version Number），
+
+“z”表示发布版本号（Release Version Number）。
+
+- 不同主版本号的库之间是不兼容的
+
+- 次版本号表示库的增量升级，即增加一些新的接口符号，且保持原来的符号不变。在主版本号相同的情况下，高的次版本号的库向后兼容低的次版本号的库
+
+- 发布版本号表示库的一些错误的修正、性能的改进等，并不添加任何新的接口，也不对接口进行更改。
+
+
+#### SO-NAME
+
+Linux普遍采用一种叫做SO-NAME的命名机制来记录共享库的依赖关系
+
+系统会为每个共享库文件创建一个软链接文件指向他，链接文件名使用SO-NAME。
+
+**SO-NAME即共享库的文件名去掉次版本号和发布版本号，保留主版本号**，比如
+
+![企业微信截图_ad481e1a-32e0-4cb3-b8ae-95f4afd9edaa](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220228113240.png)
+
+#### 特殊的共享库
+
+- Linux中也存在不少不遵守上述规定的“顽固分子”，比如最基本的C语言库Glibc就不使用这种规则，它的基本C语言库使用libc-x.y.z.so这种命名方式。Glibc有许多组件，C语言库只是其中一个，动态链接器也是Glibc的一部分，它使用ld-x.y.z.so这样的命名方式，还有Glibc的其他部分，比如数学库libm、运行时装载库libdl等。
+
+
+![企业微信截图_b2d04a7a-124c-4a7d-9d57-bbad02a141e5](https://raw.githubusercontent.com/Reventon1993/pictures/master/picgo/20220228145100.png)
+
+- 由于历史原因，动态链接器和C语言库的共享对象文件名规则不按Linux标准的共享库命名方法，但是C语言的SO-NAME还是按照正常的规则。
+
+
+#### 共享库升级
+
+共享库升级的时候，如果只是进行增量升级，即保持主版本号不变，只改变次版本号或发布版本号，那么我们可以直接将新版的共享库替换掉旧版，并且修改SO-NAME的软链接指向新版本共享库，即可实现升级；
+
+当共享库的主版本号升级时，系统中就会存在多个SO-NAME，由于这些SO-NAME并不相同，所以已有的程序并不会受影响。
+
+Linux中提供了一个工具叫做“ldconfig”，当系统中安装或更新一个共享库时，就需要运行这个工具，它会遍历所有的默认共享库目录，比如/lib、/usr/lib等，然后更新所有的软链接，使它们指向最新版的共享库；如果安装了新的共享库，那么ldconfig会为其创建相应的软链接。
+
+#### 共享库位置
+
+FHS规定，一个系统中主要有两个存放共享库的位置
+
+- /lib、/lib64，主要存放系统最关键和基础的共享库，比如动态链接器、C语言运行库、数学库等，这些库主要是那些/bin和/sbin下的程序所需要用到的库，还有系统启动时需要的库。
+
+- /usr/lib、/usr/lib64，主要保存的是一些非系统运行时所需要的关键性的共享库，主要是一些开发时用到的共享库，这些共享库一般不会被用户的程序或shell脚本直接用到。这个目录下面还包含了开发时可能会用到的静态库、目标文件等。
+
+- /usr/local/lib、/usr/local/lib64，放置一些跟操作系统本身并不十分相关的库，主要是一些第三方的应用程序的库。GNU的标准推荐第三方的程序应该默认将库安装到/usr/local
+
+所以总体来看，/lib和/usr/lib是一些很常用的、成熟的，一般是系统本身所需要的库；而/usr/local/lib是非系统所需的第三方程序的共享库。
+
+#### 程序中查找动态库
+
+todo
+
+
+
+#### 更多
+
+Reference: Library Interface Versioning in Solaris and Linux
+
+http://www.usenix.org/publications/library/proceedings/als00/2000papers/papers/full_ papers/browndavid/browndavid_html/
+
+这篇论文对Salaris和Linux的共享库版本机制和符号版本机制做了非常详细的介绍。
 
 # 堆
 
@@ -409,3 +494,5 @@ core dump file
 lds
 
 vsdo
+
+BFD&binutils
